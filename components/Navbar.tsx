@@ -4,40 +4,28 @@ import {
   ButtonGroup,
   Container,
   Flex,
+  Heading,
   HStack,
+  IconButton,
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { navbarContainer, navbarLogo } from "@styles/NavbarStyles";
+import Link from "next/link";
 
 const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   return (
-    <Box as="section" pb={{ base: "12", md: "24" }}>
-      <Box
-        as="nav"
-        bg="bg-surface"
-        boxShadow={useColorModeValue("sm", "sm-dark")}
-      >
-        <Container py={{ base: "4", lg: "5" }}>
-          <HStack spacing="10" justify="space-between">
-            <h2>Logo</h2>
-            {isDesktop ? (
-              <Flex justify="space-between" flex="1">
-                <ButtonGroup variant="link" spacing="8">
-                  <Button>Главная</Button>
-                  {/* <Button>Добавить запись</Button> */}
-                </ButtonGroup>
-                <HStack spacing="3">
-                  <Button variant="ghost">Добавить запись</Button>
-                </HStack>
-              </Flex>
-            ) : (
-              <></>
-            )}
-          </HStack>
-        </Container>
-      </Box>
-    </Box>
+    <Flex bg="blue.200" sx={navbarContainer}>
+      <Flex alignItems="flex-end">
+        <Heading sx={navbarLogo}>Logo</Heading>
+        <HStack spacing="40px" letterSpacing="1px">
+          <Link href={""}>Главная</Link>
+          <Link href={""}>Добавить запись</Link>
+        </HStack>
+      </Flex>
+      <Link href={""}>О нас</Link>
+    </Flex>
   );
 };
 
