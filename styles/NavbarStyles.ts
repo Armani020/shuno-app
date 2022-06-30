@@ -9,8 +9,6 @@ const navbarContainer: CSSObject = {
 
   a: {
     textDecoration: "none",
-    // fontSize: "1.5rem",
-    // color: "#fcb8d2",
     _hover: {},
     _active: {
       color: "white",

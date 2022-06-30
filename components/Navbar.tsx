@@ -20,8 +20,8 @@ const Navbar = () => {
       <Flex alignItems="flex-end">
         <Heading sx={navbarLogo}>Logo</Heading>
         <HStack spacing="40px" letterSpacing="1px">
-          <Link href={""}>Главная</Link>
-          <Link href={""}>Добавить запись</Link>
+          <Link href={"/"}>Главная</Link>
+          <Link href={"/new-record"}>Добавить запись</Link>
         </HStack>
       </Flex>
       <Link href={""}>О нас</Link>
