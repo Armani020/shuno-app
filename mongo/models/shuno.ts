@@ -9,3 +9,5 @@ export type Consumption = {
   consumption: number;
   shuno_id: number;
 };
+
+export type BackendFunction = [result: string | null | any, err: Error | null];
