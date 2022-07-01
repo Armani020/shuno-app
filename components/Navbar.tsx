@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  IconButton,
-  useBreakpointValue,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Heading, HStack, useBreakpointValue } from "@chakra-ui/react";
 import { navbarContainer, navbarLogo } from "@styles/NavbarStyles";
 import Link from "next/link";
 
@@ -24,7 +13,7 @@ const Navbar = () => {
           <Link href={"/new-record"}>Добавить запись</Link>
         </HStack>
       </Flex>
-      <Link href={""}>О нас</Link>
+      <Link href={"/about"}>О нас</Link>
     </Flex>
   );
 };

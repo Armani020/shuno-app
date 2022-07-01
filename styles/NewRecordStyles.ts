@@ -1,11 +1,18 @@
 import { CSSObject } from "@chakra-ui/react";
+import { CSSProperties } from "react";
+
+const mainStyle: CSSProperties = {
+  margin: "3rem auto",
+  width: "90%",
+  maxWidth: "50rem",
+};
 
 const containerStyle: CSSObject = {
   borderRadius: "6px",
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
 };
 
-const formControlStyles: CSSObject = {
+const formControlStyle: CSSObject = {
   padding: "1rem",
 };
 
@@ -26,4 +33,23 @@ const inputStyle: CSSObject = {
   },
 };
 
-export { containerStyle, formControlStyles, inputStyle };
+const actionStyle: CSSObject = {
+  marginTop: "1rem",
+  textAlign: "right",
+  button: {
+    font: "inherit",
+    cursor: "pointer",
+    color: "white",
+    padding: "0.5rem 1.5rem",
+    border: "1px solid #77002e",
+    borderRadius: "4px",
+    fontWeight: "bold",
+    _hover: {},
+    _active: {
+      backgroundColor: "#a50e48",
+      borderColor: "#a50e48",
+    },
+  },
+};
+
+export { containerStyle, formControlStyle, inputStyle, actionStyle, mainStyle };
