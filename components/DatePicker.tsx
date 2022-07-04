@@ -1,5 +1,5 @@
 import { DateSingleInput } from "@datepicker-react/styled";
-import { RefObject, useReducer } from "react";
+import { useReducer } from "react";
 
 const initialState = {
   date: null,
@@ -29,7 +29,7 @@ const DatePicker = (props: DatePickerProps) => {
       displayFormat="dd.MM.yyyy"
       onDateChange={(data) => {
         dispatch({ type: "dateChange", payload: data });
-        props.dateChange(data.date)
+        props.dateChange(data.date);
       }}
       onFocusChange={(focusedInput) =>
         dispatch({ type: "focusChange", payload: focusedInput })

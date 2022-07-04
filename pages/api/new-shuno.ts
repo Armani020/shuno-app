@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { addConsumption } from "@mongo/functions/consumption-functions";
-import { Consumption } from "@mongo/models/shuno";
+import { addShuno } from "@mongo/functions/shuno-functions";
+import { Shuno } from "@mongo/models/shuno";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -12,8 +12,8 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "POST") {
-    const data = req.body as Consumption;
-    const [result, err] = await addConsumption(data);
+    const data = req.body as Shuno;
+    const [result, err] = await addShuno(data);
 
     if (err !== null) {
       console.log(err);
@@ -22,5 +22,5 @@ export default async function handler(
 
     console.log(result);
   }
-  res.status(201).json({ message: "Meetup inserted!" });
+  res.status(201).json({ message: "Shuno inserted!" });
 }

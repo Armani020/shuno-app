@@ -10,6 +10,7 @@ const Navbar = () => {
         <Heading sx={navbarLogo}>Logo</Heading>
         <HStack spacing="40px" letterSpacing="1px">
           <Link href={"/"}>Главная</Link>
+          <Link href={"/new-shuno"}>Добавить ШУНО</Link>
           <Link href={"/new-record"}>Добавить запись</Link>
         </HStack>
       </Flex>
