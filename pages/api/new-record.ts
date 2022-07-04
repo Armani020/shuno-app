@@ -14,7 +14,10 @@ export default async function handler(
   if (req.method === "POST") {
     const data = req.body as Consumption;
 
-    const exists = await consumptionCol.findOne({ date: data.date, shuno_id: data.shuno_id });
+    const exists = await consumptionCol.findOne({
+      date: data.date,
+      shuno_id: data.shuno_id,
+    });
 
     if (exists !== null) {
       let err = Error("Аниме с таким именем уже существует");
