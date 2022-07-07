@@ -6,7 +6,7 @@ import { NextPage } from "next";
 
 const NewShuno: NextPage = () => {
   const addRecordHandler = async (enteredShunoData: Shuno) => {
-    const response = await fetch("/api/new-shuno", {
+    const response = await fetch("/api/shuno", {
       method: "POST",
       body: JSON.stringify(enteredShunoData),
       headers: {

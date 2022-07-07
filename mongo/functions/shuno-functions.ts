@@ -22,3 +22,20 @@ export const addShuno = async (data: Shuno): Promise<BackendFunction> => {
     return [null, err];
   }
 };
+
+export const getShunos = async (): Promise<BackendFunction> => {
+  try {
+    const result = await shunoCol.find().toArray();
+    const shunos = result.map((shuno) => ({
+      id: shuno._id.toString(),
+      name: shuno.name,
+      address: shuno.address,
+      controller: shuno.address,
+    }));
+
+    return [shunos, null];
+  } catch (e) {
+    const err = e as Error;
+    return [null, err];
+  }
+};

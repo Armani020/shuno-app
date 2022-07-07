@@ -1,4 +1,5 @@
 export type Shuno = {
+  id?: string;
   name: string;
   address: string;
   controller: string;

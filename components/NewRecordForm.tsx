@@ -6,6 +6,7 @@ import {
   Input,
   Select,
 } from "@chakra-ui/react";
+import { Shuno } from "@mongo/models/shuno";
 import {
   actionStyle,
   containerStyle,
@@ -17,6 +18,7 @@ import DatePicker from "./DatePicker";
 
 type NewRecordFormProps = {
   onAddRecord: (enteredRecordData: any) => void;
+  shunos: Shuno[];
 };
 
 const NewRecordForm = (props: NewRecordFormProps) => {
@@ -73,7 +75,9 @@ const NewRecordForm = (props: NewRecordFormProps) => {
         <Box sx={inputStyle}>
           <FormLabel htmlFor="shuno">ШУНО</FormLabel>
           <Select id="shuno" placeholder="Выберите ШУНО" ref={shunoInputRef}>
-            <option>ШУНО-1</option>
+            {props.shunos.map((shuno) => (
+              <option key={shuno.id} value={shuno.address}>{shuno.name}</option>
+            ))}
           </Select>
         </Box>
         <Box sx={actionStyle} onClick={submit}>
