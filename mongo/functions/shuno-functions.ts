@@ -27,7 +27,41 @@ export const getShunos = async (): Promise<BackendFunction> => {
   try {
     const result = await shunoCol.find().toArray();
     const shunos = result.map((shuno) => ({
-      id: shuno._id.toString(),
+      id: shuno._id,
+      name: shuno.name,
+      address: shuno.address,
+      controller: shuno.address,
+    }));
+
+    return [shunos, null];
+  } catch (e) {
+    const err = e as Error;
+    return [null, err];
+  }
+};
+
+export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
+  try {
+    const result = await shunoCol.aggregate([
+      {
+        $lookup: {
+          from: "consumption",
+          as: "records",
+          let: { shuno_name: "$name" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$shuno", "$$shuno_name"] },
+              },
+            },
+            { $limit: 2 },
+          ],
+        },
+      },
+    ]);
+
+    const shunos = result.map((shuno) => ({
+      id: shuno._id,
       name: shuno.name,
       address: shuno.address,
       controller: shuno.address,

@@ -46,10 +46,14 @@ const NewRecordForm = (props: NewRecordFormProps) => {
       return;
     }
 
+    const shunoIdByName = props.shunos.find((shuno) => {
+      return shuno.name == enteredShuno?.toString();
+    });
+
     const recordData = {
       date: enteredDate?.toJSON().slice(0, 10),
       consumption: enteredConsumtion,
-      shuno: enteredShuno,
+      shuno: shunoIdByName?.id,
     };
 
     console.log(recordData);
@@ -76,7 +80,9 @@ const NewRecordForm = (props: NewRecordFormProps) => {
           <FormLabel htmlFor="shuno">ШУНО</FormLabel>
           <Select id="shuno" placeholder="Выберите ШУНО" ref={shunoInputRef}>
             {props.shunos.map((shuno) => (
-              <option key={shuno.id} value={shuno.address}>{shuno.name}</option>
+              <option key={shuno.id} value={shuno.address}>
+                {shuno.name}
+              </option>
             ))}
           </Select>
         </Box>
