@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { addShuno, getShunos } from "@mongo/functions/shuno-functions";
+import { getShunosWithConsumption } from "@mongo/functions/shuno-functions";
 import { Shuno } from "@mongo/models/shuno";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -12,7 +12,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "GET") {
-    const [result, err] = await getShunos();
+    const [result, err] = await getShunosWithConsumption();
 
     if (err !== null) {
       console.log(err);

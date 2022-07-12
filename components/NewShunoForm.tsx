@@ -40,7 +40,7 @@ const NewShunoForm = (props: NewShunoFormProps) => {
 
     const recordData = {
       name: enteredName,
-      address: enteredName,
+      address: enteredAddress,
       controller: enteredController,
     };
 
