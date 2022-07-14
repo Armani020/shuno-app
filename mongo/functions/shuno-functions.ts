@@ -55,7 +55,7 @@ export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
                   $expr: { $eq: ["$shuno", "$$shuno_id"] },
                 },
               },
-              { $limit: 2 },
+              { $limit: 5 },
             ],
           },
         },

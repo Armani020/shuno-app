@@ -7,6 +7,14 @@ const mainStyle: CSSProperties = {
   maxWidth: "50rem",
 };
 
+const datePickerInputStyle: CSSProperties = {
+  width: "100%",
+  padding: "5px 15px",
+  border: "1px solid",
+  borderRadius: "6px",
+  borderColor: "RGBA(0, 0, 0, 0.08)",
+};
+
 const containerStyle: CSSObject = {
   borderRadius: "6px",
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
@@ -52,4 +60,11 @@ const actionStyle: CSSObject = {
   },
 };
 
-export { containerStyle, formControlStyle, inputStyle, actionStyle, mainStyle };
+export {
+  containerStyle,
+  formControlStyle,
+  inputStyle,
+  actionStyle,
+  mainStyle,
+  datePickerInputStyle,
+};

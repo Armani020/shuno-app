@@ -14,7 +14,7 @@ import {
   inputStyle,
 } from "@styles/NewRecordStyles";
 import { useRef, useState } from "react";
-import DatePicker from "./DatePicker";
+import MyDatePicker from "./MyDatePicker";
 
 type NewRecordFormProps = {
   onAddRecord: (enteredRecordData: any) => void;
@@ -65,7 +65,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
       <FormControl isRequired sx={formControlStyle}>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="date">Дата</FormLabel>
-          <DatePicker dateChange={dateChange} />
+          <MyDatePicker dateChange={dateChange}/>
         </Box>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="consumption">Потребление</FormLabel>
