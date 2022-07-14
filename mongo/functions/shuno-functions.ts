@@ -52,10 +52,11 @@ export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
             pipeline: [
               {
                 $match: {
-                  $expr: { $eq: ["$shuno", "$$shuno_id"] },
+                  $expr: { $eq: ["$shuno_id", "$$shuno_id"] },
                 },
               },
               { $limit: 5 },
+              { $sort: { date: 1 } },
             ],
           },
         },

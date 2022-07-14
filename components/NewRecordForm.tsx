@@ -53,7 +53,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
     const recordData = {
       date: enteredDate?.toJSON().slice(0, 10),
       consumption: enteredConsumtion,
-      shuno: shunoIdByName?.id,
+      shuno_id: shunoIdByName?.id,
     };
 
     console.log(recordData);

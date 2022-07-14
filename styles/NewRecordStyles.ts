@@ -4,7 +4,7 @@ import { CSSProperties } from "react";
 const mainStyle: CSSProperties = {
   margin: "3rem auto",
   width: "90%",
-  maxWidth: "50rem",
+  maxWidth: "80rem",
 };
 
 const datePickerInputStyle: CSSProperties = {
@@ -16,6 +16,7 @@ const datePickerInputStyle: CSSProperties = {
 };
 
 const containerStyle: CSSObject = {
+  marginTop: "20px",
   borderRadius: "6px",
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
 };
