@@ -10,6 +10,11 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { ShunoWithRecords } from "@mongo/models/shuno";
+import {
+  consumptionTableStyle,
+  homeContainerStyle,
+  shunoTableStyle,
+} from "@styles/HomePageStyles";
 import { containerStyle, mainStyle } from "@styles/NewRecordStyles";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -37,47 +42,48 @@ const Home: NextPage = () => {
   return (
     <Box sx={mainStyle}>
       {loadedShunosWithRecords.map((shuno) => (
-        <TableContainer key={shuno.id} sx={containerStyle}>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>Имя ШУНО</Th>
-                <Th>Адрес</Th>
-                <Th>Контроллер</Th>
-                {/* {shuno.records.map((record) => (
-                  <Th>{record.date.toString()}</Th>
-                ))} */}
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr key={shuno.id}>
-                <Td>{shuno.name}</Td>
-                <Td>{shuno.address}</Td>
-                <Td>{shuno.controller}</Td>
-                {/* {shuno.records.map((record) => (
-                  <Td>{record.consumption}</Td>
-                ))} */}
-              </Tr>
-            </Tbody>
-          </Table>
+        <Box key={shuno.id} sx={homeContainerStyle}>
+          <TableContainer sx={shunoTableStyle}>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Имя ШУНО</Th>
+                  <Th>Адрес</Th>
+                  <Th>Контроллер</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  <Td alignItems="center">{shuno.name}</Td>
+                  <Td>{shuno.address}</Td>
+                  <Td>{shuno.controller}</Td>
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
 
-          <Table size="sm">
-            <Thead>
-              <Tr>
-                {shuno.records.map((record) => (
-                  <Th key={shuno.name}>{record.date.toString()}</Th>
-                ))}
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
-                {shuno.records.map((record) => (
-                  <Td key={shuno.address}>{record.consumption}</Td>
-                ))}
-              </Tr>
-            </Tbody>
-          </Table>
-        </TableContainer>
+          <TableContainer sx={consumptionTableStyle}>
+            <Table size="sm">
+              <TableCaption>Последние данные о потреблении</TableCaption>
+              <Thead>
+                <Tr>
+                  {shuno.records.map((record) => (
+                    <Th key={record.date.toString()}>
+                      {record.date.toString()}
+                    </Th>
+                  ))}
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  {shuno.records.map((record) => (
+                    <Td key={record.date.toString()}>{record.consumption}</Td>
+                  ))}
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Box>
       ))}
     </Box>
   );

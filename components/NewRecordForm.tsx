@@ -42,7 +42,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
     if (enteredConsumtion == null || undefined) {
       return;
     }
-    if (enteredShuno?.length == 0) {
+    if (enteredShuno?.length == 0 || null || undefined) {
       return;
     }
 
@@ -65,7 +65,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
       <FormControl isRequired sx={formControlStyle}>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="date">Дата</FormLabel>
-          <MyDatePicker dateChange={dateChange}/>
+          <MyDatePicker dateChange={dateChange} />
         </Box>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="consumption">Потребление</FormLabel>
@@ -80,9 +80,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
           <FormLabel htmlFor="shuno">ШУНО</FormLabel>
           <Select id="shuno" placeholder="Выберите ШУНО" ref={shunoInputRef}>
             {props.shunos.map((shuno) => (
-              <option key={shuno.id} value={shuno.address}>
-                {shuno.name}
-              </option>
+              <option key={shuno.id}>{shuno.name}</option>
             ))}
           </Select>
         </Box>

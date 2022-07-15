@@ -19,6 +19,7 @@ const containerStyle: CSSObject = {
   marginTop: "20px",
   borderRadius: "6px",
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+  background: "#FFF",
 };
 
 const formControlStyle: CSSObject = {

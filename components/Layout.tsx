@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { bodyStyle } from "@styles/HomePageStyles";
 import Navbar from "./Navbar";
 
 type LayoutProps = {
@@ -7,8 +8,8 @@ type LayoutProps = {
 
 const Layout = (props: LayoutProps) => {
   return (
-    <Box>
-      <Navbar/>
+    <Box sx={bodyStyle}>
+      <Navbar />
       <main>{props.children}</main>
     </Box>
   );
