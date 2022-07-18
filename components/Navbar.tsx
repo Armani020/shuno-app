@@ -5,7 +5,7 @@ import Link from "next/link";
 const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   return (
-    <Flex bg="blue.200" sx={navbarContainer}>
+    <Flex bg="gray.400" sx={navbarContainer}>
       <Flex alignItems="flex-end">
         <Heading sx={navbarLogo}>Logo</Heading>
         <HStack spacing="40px" letterSpacing="1px">

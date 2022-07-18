@@ -1,8 +1,10 @@
 import { CSSObject } from "@emotion/react";
 
 const bodyStyle: CSSObject = {
-  backgroundImage: "bg.jpg",
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+  backgroundImage: "bg.jpg",
+  minHeight: "100vh",
+  paddingTop: "5rem"
 };
 
 const homeContainerStyle: CSSObject = {

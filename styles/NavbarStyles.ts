@@ -6,6 +6,8 @@ const navbarContainer: CSSObject = {
   width: "100%",
   alignItems: "flex-end",
   justifyContent: "space-between",
+  position: "fixed",
+  top: "0",
 
   a: {
     textDecoration: "none",

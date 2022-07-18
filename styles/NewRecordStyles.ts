@@ -5,6 +5,7 @@ const mainStyle: CSSProperties = {
   margin: "3rem auto",
   width: "90%",
   maxWidth: "80rem",
+  paddingBottom: "3rem",
 };
 
 const datePickerInputStyle: CSSProperties = {
