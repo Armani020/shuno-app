@@ -67,6 +67,7 @@ const Home: NextPage = () => {
               <TableCaption>Последние данные о потреблении</TableCaption>
               <Thead>
                 <Tr>
+                  <Th>Дата</Th>
                   {shuno.records.map((record) => (
                     <Th key={record.date.toString()}>
                       {record.date.toString()}
@@ -76,6 +77,7 @@ const Home: NextPage = () => {
               </Thead>
               <Tbody>
                 <Tr>
+                  <Td>Потребление</Td>
                   {shuno.records.map((record) => (
                     <Td key={record.date.toString()}>{record.consumption}</Td>
                   ))}
