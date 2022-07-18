@@ -84,8 +84,10 @@ const NewRecordForm = (props: NewRecordFormProps) => {
             ))}
           </Select>
         </Box>
-        <Box sx={actionStyle} onClick={submit}>
-          <Button bg="blue.400">Добавить запись</Button>
+        <Box sx={actionStyle}>
+          <Button bg="blue.400" onClick={submit}>
+            Добавить запись
+          </Button>
         </Box>
       </FormControl>
     </Box>

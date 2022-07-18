@@ -22,5 +22,5 @@ export default async function handler(
 
     console.log(result);
   }
-  res.status(201).json({ message: "Consumption record inserted!" });
+  res.status(201).json({ message: "Запись добавлена успешно!" });
 }

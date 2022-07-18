@@ -1,13 +1,15 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import NewRecordForm from "@components/NewRecordForm";
-import { Consumption, Shuno } from "@mongo/models/shuno";
+import { useUtils } from "@hooks/utils";
+import { ApiResponse, Consumption, Shuno } from "@mongo/models/shuno";
 import { mainStyle } from "@styles/NewRecordStyles";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 
 const NewRecord: NextPage = () => {
   const [loadedShunos, setLoadedShunos] = useState<Shuno[]>([]);
+  const toast = useToast();
+  const { toaster } = useUtils();
 
   useEffect(() => {
     const getData = async () => {
@@ -33,8 +35,14 @@ const NewRecord: NextPage = () => {
       },
     });
 
-    const data = await response.json();
-    console.log(data);
+    if (response.status == 201) {
+      const message: ApiResponse = await response.json();
+      toaster(toast, message.message, "success");
+      return;
+    }
+
+    const message: ApiResponse = await response.json();
+    toaster(toast, message.message, "error");
   };
 
   return (

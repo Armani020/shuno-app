@@ -14,10 +14,14 @@ export type Consumption = {
 
 export type ShunoWithRecords = {
   id?: string;
-  name: string,
-  address: string,
-  controller: string,
-  records: Consumption[]
-}
+  name: string;
+  address: string;
+  controller: string;
+  records: Consumption[];
+};
 
 export type BackendFunction = [result: string | null | any, err: Error | null];
+
+export type ApiResponse = {
+  message: string;
+};
