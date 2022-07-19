@@ -1,47 +1,62 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-} from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import {
   actionStyle,
   containerStyle,
   formControlStyle,
   inputStyle,
 } from "@styles/NewRecordStyles";
-import { useRef } from "react";
+import { ChangeEvent, useState } from "react";
 
 type NewShunoFormProps = {
   onAddShuno: (enteredRecordData: any) => void;
 };
 
 const NewShunoForm = (props: NewShunoFormProps) => {
-  const nameInputRef = useRef<HTMLInputElement>(null);
-  const addressInputRef = useRef<HTMLInputElement>(null);
-  const controllerInputRef = useRef<HTMLInputElement>(null);
+  const [form, setForm] = useState({
+    shuno: "",
+    address: "",
+    controller: "",
+    w150: "",
+    w130: "",
+    w70: "",
+  });
+
+  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
   const submit = () => {
-    const enteredName = nameInputRef.current?.value;
-    const enteredAddress = addressInputRef.current?.value;
-    const enteredController = controllerInputRef.current?.value;
-
-    if (enteredName == null || undefined) {
+    if (!form.shuno || form.shuno === "") {
+      console.log("shuno name is empty!");
       return;
     }
-    if (enteredAddress == null || undefined) {
+    if (!form.address || form.address === "") {
+      console.log("address is empty!");
       return;
     }
-    if (enteredController?.length == 0) {
+    if (!form.controller || form.controller === "") {
+      console.log("controller is empty!");
       return;
+    }
+    if (!form.w150 || form.w150 === "") {
+      form.w150 = "0";
+    }
+    if (!form.w130 || form.w130 === "") {
+      form.w130 = "0";
+    }
+    if (!form.w70 || form.w70 === "") {
+      form.w70 = "0";
     }
 
     const recordData = {
-      name: enteredName,
-      address: enteredAddress,
-      controller: enteredController,
+      name: form.shuno,
+      address: form.address,
+      controller: form.controller,
+      lamps: {
+        w150: form.w150,
+        w130: form.w130,
+        w70: form.w70,
+      },
     };
 
     console.log(recordData);
@@ -53,26 +68,71 @@ const NewShunoForm = (props: NewShunoFormProps) => {
       <FormControl isRequired sx={formControlStyle}>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="name">Имя ШУНО</FormLabel>
-          <Input id="name" placeholder="Введите имя ШУНО" ref={nameInputRef} />
+          <Input
+            id="name"
+            name="shuno"
+            value={form.shuno}
+            onChange={changeHandler}
+            placeholder="Введите имя ШУНО"
+          />
         </Box>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="address">Адрес</FormLabel>
           <Input
             id="address"
+            name="address"
+            value={form.address}
+            onChange={changeHandler}
             placeholder="Введите адрес"
-            ref={addressInputRef}
           />
         </Box>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="controller">Контроллер</FormLabel>
           <Input
             id="controller"
+            name="controller"
+            value={form.controller}
+            onChange={changeHandler}
             placeholder="Введите контроллер"
-            ref={controllerInputRef}
           />
         </Box>
-        <Box sx={actionStyle} onClick={submit}>
-          <Button bg="blue.400">Добавить ШУНО</Button>
+        <Box sx={inputStyle}>
+          <FormLabel htmlFor="150w lamp">Количество 150w</FormLabel>
+          <Input
+            type="number"
+            id="150w lamp"
+            name="w150"
+            value={form.w150}
+            onChange={changeHandler}
+            placeholder="Введите количество"
+          />
+        </Box>
+        <Box sx={inputStyle}>
+          <FormLabel htmlFor="130w lamp">Количество 130w</FormLabel>
+          <Input
+            type="number"
+            id="130w lamp"
+            name="w130"
+            value={form.w130}
+            onChange={changeHandler}
+            placeholder="Введите количество"
+          />
+        </Box>
+        <Box sx={inputStyle}>
+          <FormLabel htmlFor="70w lamp">Количество 70w</FormLabel>
+          <Input
+            type="number"
+            id="70w lamp"
+            name="w70"
+            value={form.w70}
+            onChange={changeHandler}
+            placeholder="Введите количество"
+          />
+        </Box>
+        <Box sx={actionStyle}>
+          <Button bg="blue.400" onClick={submit}>
+            Добавить ШУНО
+          </Button>
         </Box>
       </FormControl>
     </Box>

@@ -3,13 +3,20 @@ export type Shuno = {
   name: string;
   address: string;
   controller: string;
+  lamps: ShunoLamp;
+};
+
+export type ShunoLamp = {
+  w150: number;
+  w130: number;
+  w70: number;
 };
 
 export type Consumption = {
   id?: string;
   date: Date;
   consumption: number;
-  shuno_id: number;
+  shuno_id: string;
 };
 
 export type ShunoWithRecords = {
