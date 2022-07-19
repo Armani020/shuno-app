@@ -1,4 +1,5 @@
 import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Shuno } from "@mongo/models/shuno";
 import {
   actionStyle,
   containerStyle,
@@ -8,7 +9,7 @@ import {
 import { ChangeEvent, useState } from "react";
 
 type NewShunoFormProps = {
-  onAddShuno: (enteredRecordData: any) => void;
+  onAddShuno: (enteredRecordData: Shuno) => void;
 };
 
 const NewShunoForm = (props: NewShunoFormProps) => {
@@ -48,14 +49,14 @@ const NewShunoForm = (props: NewShunoFormProps) => {
       form.w70 = "0";
     }
 
-    const recordData = {
+    const recordData: Shuno = {
       name: form.shuno,
       address: form.address,
       controller: form.controller,
       lamps: {
-        w150: form.w150,
-        w130: form.w130,
-        w70: form.w70,
+        w150: Number(form.w150),
+        w130: Number(form.w130),
+        w70: Number(form.w70),
       },
     };
 

@@ -1,6 +1,6 @@
 import { AlertStatus, useToast } from "@chakra-ui/react";
 
-const useUtils = () => {
+export const useUtils = () => {
 
   const toaster = (toast: any, message: string, statusMessage: AlertStatus) => {
     toast({
@@ -15,5 +15,3 @@ const useUtils = () => {
     toaster
   }
 };
-
-export { useUtils };

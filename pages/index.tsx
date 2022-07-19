@@ -15,7 +15,7 @@ import {
   homeContainerStyle,
   shunoTableStyle,
 } from "@styles/HomePageStyles";
-import { containerStyle, mainStyle } from "@styles/NewRecordStyles";
+import { mainStyle } from "@styles/NewRecordStyles";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 
@@ -70,7 +70,7 @@ const Home: NextPage = () => {
                   <Th>Дата</Th>
                   {shuno.records.map((record) => (
                     <Th key={record.date.toString()}>
-                      {record.date.toString()}
+                      {record.date.toString().slice(0, 10)}
                     </Th>
                   ))}
                 </Tr>

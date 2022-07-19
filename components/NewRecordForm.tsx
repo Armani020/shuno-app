@@ -54,7 +54,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
     });
 
     const recordData: Consumption = {
-      date: new Date(date?.toJSON().slice(0, 10)),
+      date: date,
       consumption: Number(form.consumption),
       shuno_id: shunoIdByName!.id!,
     };
