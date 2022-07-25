@@ -1,4 +1,4 @@
-import { Shuno, BackendFunction } from "@mongo/models/shuno";
+import { Shuno, BackendFunction, ShunoWithRecords } from "@mongo/models/shuno";
 import { shunoCol } from "@mongo/mongodb";
 
 export const addShuno = async (data: Shuno): Promise<BackendFunction> => {
@@ -9,17 +9,17 @@ export const addShuno = async (data: Shuno): Promise<BackendFunction> => {
 
     if (exists !== null) {
       let err = Error("ШУНО с таким именем уже существует");
-      return [null, err];
+      return [null, null, err];
     }
 
     await shunoCol.insertOne(data);
 
-    const result = { message: "ШУНО успешно добавлена" };
+    const message = "ШУНО успешно добавлена";
 
-    return [result, null];
+    return [null, message, null];
   } catch (e) {
     const err = e as Error;
-    return [null, err];
+    return [null, null, err];
   }
 };
 
@@ -30,13 +30,15 @@ export const getShunos = async (): Promise<BackendFunction> => {
       id: shuno._id,
       name: shuno.name,
       address: shuno.address,
-      controller: shuno.address,
+      controller: shuno.controller,
+      lamps: shuno.lamps,
     }));
+    const message = "Список ШУНО получен";
 
-    return [shunos, null];
+    return [shunos, message, null];
   } catch (e) {
     const err = e as Error;
-    return [null, err];
+    return [null, null, err];
   }
 };
 
@@ -63,7 +65,7 @@ export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
       ])
       .toArray();
 
-    const shunosWithRecords = result.map((shuno) => ({
+    const shunosWithRecords: ShunoWithRecords[] = result.map((shuno) => ({
       id: shuno._id,
       name: shuno.name,
       address: shuno.address,
@@ -71,9 +73,10 @@ export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
       records: shuno.records,
     }));
 
-    return [shunosWithRecords, null];
+    const message = "Список ШУНО с последними записями получен";
+    return [shunosWithRecords, message, null];
   } catch (e) {
     const err = e as Error;
-    return [null, err];
+    return [null, null, err];
   }
 };

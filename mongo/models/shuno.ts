@@ -27,8 +27,18 @@ export type ShunoWithRecords = {
   records: Consumption[];
 };
 
-export type BackendFunction = [result: string | null | any, err: Error | null];
+export type BackendFunction = [
+  result: string | null | any,
+  message: string | null,
+  err: Error | null
+];
 
 export type ApiResponse = {
   message: string;
+};
+
+export type Data = {
+  result: any;
+  message: string | null;
+  error: string | null;
 };

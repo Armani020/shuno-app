@@ -4,7 +4,7 @@ const bodyStyle: CSSObject = {
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
   backgroundImage: "bg.jpg",
   minHeight: "100vh",
-  paddingTop: "5rem"
+  paddingTop: "5rem",
 };
 
 const homeContainerStyle: CSSObject = {
@@ -13,13 +13,37 @@ const homeContainerStyle: CSSObject = {
   boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
   padding: "30px",
   background: "#FFF",
+  h1: {
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "15px",
+    fontSize: "24"
+  },
 };
 
 const shunoTableStyle: CSSObject = {
   borderTop: "1px solid",
   borderRight: "1px solid",
   borderLeft: "1px solid",
-  borderRadius: "6px 6px 0 0",
+  // borderBottom: "1px solid",
+  // borderRadius: "6px 6px 0 0",
+};
+
+const insideTableStyle: CSSObject = {
+  th: {
+    textAlign: "center",
+    maxWidth: "30px",
+    backgroundColor: "lightgray",
+    borderRight: "1px",
+  },
+  td: {
+    textAlign: "center",
+    maxWidth: "30px",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+    borderRight: "1px",
+    borderBottom: "1px",
+  },
 };
 
 const consumptionTableStyle: CSSObject = {
@@ -33,5 +57,6 @@ export {
   homeContainerStyle,
   shunoTableStyle,
   consumptionTableStyle,
+  insideTableStyle,
   bodyStyle,
 };

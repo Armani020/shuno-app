@@ -12,16 +12,16 @@ export const addConsumption = async (
 
     if (exists !== null) {
       let err = Error("Запись в эту дату уже существует");
-      return [null, err];
+      return [null, null, err];
     }
 
-    await consumptionCol.insertOne(data);
+    const result = await consumptionCol.insertOne(data);
 
-    const result = { message: "Запись успешно добавлена" };
+    const message = "Запись успешно добавлена";
 
-    return [result, null];
+    return [result, message, null];
   } catch (e) {
     const err = e as Error;
-    return [null, err];
+    return [null, null, err];
   }
 };
