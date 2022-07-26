@@ -3,8 +3,8 @@ import { CSSProperties } from "react";
 
 const mainStyle: CSSProperties = {
   margin: "3rem auto",
-  width: "90%",
-  maxWidth: "100rem",
+  width: "95%",
+  // maxWidth: "130rem",
   paddingBottom: "3rem",
 };
 

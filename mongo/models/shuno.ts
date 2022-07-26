@@ -1,31 +1,31 @@
-export type Shuno = {
+export interface Shuno {
   id?: string;
   name: string;
   address: string;
   controller: string;
   lamps: ShunoLamp;
-};
+}
 
-export type ShunoLamp = {
+export interface ShunoLamp {
   w150: number;
   w130: number;
   w70: number;
-};
+}
 
-export type Consumption = {
+export interface Consumption {
   id?: string;
   date: Date;
   consumption: number;
   shuno_id: string;
-};
+}
 
-export type ShunoWithRecords = {
+export interface ShunoWithRecords {
   id?: string;
   name: string;
   address: string;
   controller: string;
   records: Consumption[];
-};
+}
 
 export type BackendFunction = [
   result: string | null | any,
@@ -33,12 +33,12 @@ export type BackendFunction = [
   err: Error | null
 ];
 
-export type ApiResponse = {
+export interface ApiResponse {
   message: string;
-};
+}
 
-export type Data = {
+export interface Data {
   result: any;
   message: string | null;
   error: string | null;
-};
+}

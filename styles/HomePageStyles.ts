@@ -17,28 +17,26 @@ const homeContainerStyle: CSSObject = {
     textAlign: "center",
     paddingTop: "10px",
     paddingBottom: "15px",
-    fontSize: "24"
+    fontSize: "24",
   },
 };
 
-const shunoTableStyle: CSSObject = {
+const shunoTableContainerStyle: CSSObject = {
   borderTop: "1px solid",
   borderRight: "1px solid",
   borderLeft: "1px solid",
-  // borderBottom: "1px solid",
-  // borderRadius: "6px 6px 0 0",
 };
 
-const insideTableStyle: CSSObject = {
+const shunoTableStyle: CSSObject = {
+  tableLayout: "auto",
+  // width: "100%",
   th: {
     textAlign: "center",
-    maxWidth: "30px",
     backgroundColor: "lightgray",
     borderRight: "1px",
   },
   td: {
     textAlign: "center",
-    maxWidth: "30px",
     paddingLeft: "5px",
     paddingRight: "5px",
     borderRight: "1px",
@@ -47,16 +45,13 @@ const insideTableStyle: CSSObject = {
 };
 
 const consumptionTableStyle: CSSObject = {
-  //   marginTop: "20px",
-  border: "1px solid",
-  borderRadius: "0 0 6px 6px",
-  padding: "5px",
+  width: "10%",
 };
 
 export {
   homeContainerStyle,
-  shunoTableStyle,
+  shunoTableContainerStyle,
   consumptionTableStyle,
-  insideTableStyle,
+  shunoTableStyle,
   bodyStyle,
 };
