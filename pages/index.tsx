@@ -2,7 +2,7 @@ import { mainStyle } from "@styles/NewRecordStyles";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Data, ShunoWithRecords } from "@mongo/models/shuno";
+import { Consumption, Data, ShunoWithRecords } from "@mongo/models/shuno";
 import {
   consumptionTableStyle,
   homeContainerStyle,
@@ -102,6 +102,7 @@ type TableBodyListItemProps = {
 };
 
 const TableBodyListItem = ({ shuno }: TableBodyListItemProps) => {
+  const lastRecord: Consumption = shuno.records[0];
   return (
     <>
       <Tr>
@@ -111,10 +112,10 @@ const TableBodyListItem = ({ shuno }: TableBodyListItemProps) => {
         <Td rowSpan={2}>
           {shuno.lamps.w150 + shuno.lamps.w130 + shuno.lamps.w70}
         </Td>
-        <Td colSpan={3}>{shuno.records[0]?.date.toString().slice(0, 10)}</Td>
+        <Td colSpan={3}>{lastRecord ? lastRecord.date.toString().slice(0, 10) : "Нет данных"}</Td>
       </Tr>
       <Tr key={shuno.name}>
-        <Td>3423</Td>
+        <Td>{lastRecord ? lastRecord.consumption : "Нет данных"}</Td>
         <Td>{3434 - 3423}</Td>
         <Td>~ 2</Td>
       </Tr>
