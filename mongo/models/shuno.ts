@@ -24,6 +24,7 @@ export interface ShunoWithRecords {
   name: string;
   address: string;
   controller: string;
+  lamps: ShunoLamp;
   records: Consumption[];
 }
 

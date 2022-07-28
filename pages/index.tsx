@@ -51,119 +51,74 @@ const Home: NextPage = () => {
       <Box sx={homeContainerStyle}>
         <h1>Таблица ШУНО</h1>
         <Box sx={shunoTableContainerStyle}>
-          {loadedShunosWithRecords.map((shuno) => (
-            <TableContainer key={shuno.id}>
-              <Table sx={shunoTableStyle}>
-                <Thead>
-                  <Tr>
-                    <Th rowSpan={2} width={"1%"}>
-                      №
-                    </Th>
-                    <Th rowSpan={2} width={"5%"}>
-                      Номер ШУНО
-                    </Th>
-                    <Th rowSpan={2} width={"5%"}>
-                      Общая <br /> нагрузка <br /> Вт
-                    </Th>
-                    <Th width={"5%"} rowSpan={2} sx={consumptionTableStyle}>
-                      Плановое <br /> количество <br /> светильников
-                    </Th>
-                    <Th colSpan={3} textAlign="center">
-                      {shuno.records[0]?.date.toString().slice(0, 10)}
-                    </Th>
-                    <Th colSpan={3} textAlign="center">
-                      {shuno.records[1]?.date.toString().slice(0, 10)}
-                    </Th>
-                    <Th colSpan={3} textAlign="center">
-                      {shuno.records[2]?.date.toString().slice(0, 10)}
-                    </Th>
-                  </Tr>
-                  <Tr>
-                    <Th width={"5%"}>
-                      Текущая <br /> нагрузка
-                    </Th>
-                    <Th width={"5%"}>
-                      Отклонение <br /> от плановой <br /> нагрузки
-                    </Th>
-                    <Th width={"5%"}>
-                      Количество <br /> неисправных <br /> светильников
-                    </Th>
-                    <Th width={"5%"}>
-                      Текущая <br /> нагрузка
-                    </Th>
-                    <Th width={"5%"}>
-                      Отклонение <br /> от плановой <br /> нагрузки
-                    </Th>
-                    <Th width={"5%"}>
-                      Количество <br /> неисправных <br /> светильников
-                    </Th>
-                    <Th width={"5%"}>
-                      Текущая <br /> нагрузка
-                    </Th>
-                    <Th width={"5%"}>
-                      Отклонение <br /> от плановой <br /> нагрузки
-                    </Th>
-                    <Th width={"5%"}>
-                      Количество <br /> неисправных <br /> светильников
-                    </Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  <Tr>
-                    <Td>{shuno.id?.toString().slice(0,2)}</Td>
-                    <Td>{shuno.name}</Td>
-                    <Td>3434</Td>
-                    <Td>234</Td>
-                    <Td>3423</Td>
-                    <Td>{3434-3423}</Td>
-                    <Td>~ 2</Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-            </TableContainer>
-          ))}
-        </Box>
-
-        {loadedShunosWithRecords.map((shuno) => (
-          <TableContainer key={shuno.id}>
-            <Table onClick={() => openDetailPage(shuno.id?.toString()!)}>
+          <TableContainer>
+            <Table sx={shunoTableStyle}>
               <Thead>
                 <Tr>
-                  <Th width={"20%"}>Имя ШУНО</Th>
-                  <Th width={"20%"}>Адрес</Th>
-                  <Th>Контроллер</Th>
-                  {/* {shuno.records.map((record) => (
-                      <Th key={record.date.toString()}>
-                        {record.date.toString().slice(0, 10)}
-                      </Th>
-                    ))} */}
-                  <Th>{shuno.records[0]?.date.toString().slice(0, 10)}</Th>
-                  <Th>{shuno.records[1]?.date.toString().slice(0, 10)}</Th>
-                  <Th>{shuno.records[2]?.date.toString().slice(0, 10)}</Th>
-                  <Th>{shuno.records[3]?.date.toString().slice(0, 10)}</Th>
-                  <Th>{shuno.records[4]?.date.toString().slice(0, 10)}</Th>
+                  <Th rowSpan={2} width={"1%"}>
+                    №
+                  </Th>
+                  <Th rowSpan={2} width={"5%"}>
+                    Номер ШУНО
+                  </Th>
+                  <Th rowSpan={2} width={"5%"}>
+                    Общая <br /> нагрузка <br /> Вт
+                  </Th>
+                  <Th width={"5%"} rowSpan={2} sx={consumptionTableStyle}>
+                    Плановое <br /> количество <br /> светильников
+                  </Th>
+                  <Th colSpan={3} textAlign="center">
+                    Дата
+                    {/* {shuno.records[0]?.date.toString().slice(0, 10)} */}
+                  </Th>
+                </Tr>
+                <Tr>
+                  <Th width={"5%"}>
+                    Текущая <br /> нагрузка
+                  </Th>
+                  <Th width={"5%"}>
+                    Отклонение <br /> от плановой <br /> нагрузки
+                  </Th>
+                  <Th width={"5%"}>
+                    Количество <br /> неисправных <br /> светильников
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>{shuno.name}</Td>
-                  <Td>{shuno.address}</Td>
-                  <Td>{shuno.controller}</Td>
-                  {/* {shuno.records.map((record) => (
-                      <Td key={record.date.toString()}>{record.consumption}</Td>
-                    ))} */}
-                  <Td>{shuno.records[0]?.consumption} Вт</Td>
-                  <Td>{shuno.records[1]?.consumption} Вт</Td>
-                  <Td>{shuno.records[2]?.consumption} Вт</Td>
-                  <Td>{shuno.records[3]?.consumption} Вт</Td>
-                  <Td>{shuno.records[4]?.consumption} Вт</Td>
-                </Tr>
+                {loadedShunosWithRecords.map((shuno) => (
+                  <TableBodyListItem key={shuno.id} shuno={shuno} />
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
-        ))}
+        </Box>
       </Box>
     </Box>
+  );
+};
+
+type TableBodyListItemProps = {
+  shuno: ShunoWithRecords;
+};
+
+const TableBodyListItem = ({ shuno }: TableBodyListItemProps) => {
+  return (
+    <>
+      <Tr>
+        <Td rowSpan={2}>{shuno.id?.toString().slice(0, 2)}</Td>
+        <Td rowSpan={2}>{shuno.name}</Td>
+        <Td rowSpan={2}>3434</Td>
+        <Td rowSpan={2}>
+          {shuno.lamps.w150 + shuno.lamps.w130 + shuno.lamps.w70}
+        </Td>
+        <Td colSpan={3}>{shuno.records[0]?.date.toString().slice(0, 10)}</Td>
+      </Tr>
+      <Tr key={shuno.name}>
+        <Td>3423</Td>
+        <Td>{3434 - 3423}</Td>
+        <Td>~ 2</Td>
+      </Tr>
+    </>
   );
 };
 
