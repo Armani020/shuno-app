@@ -110,13 +110,13 @@ const Home: NextPage = () => {
                 </Thead>
                 <Tbody>
                   <Tr>
-                    <Td>{shuno.id}</Td>
+                    <Td>{shuno.id?.toString().slice(0,2)}</Td>
                     <Td>{shuno.name}</Td>
                     <Td>3434</Td>
                     <Td>234</Td>
-                    <Td></Td>
-                    <Td>{shuno.name}</Td>
-                    <Td>{shuno.name}</Td>
+                    <Td>3423</Td>
+                    <Td>{3434-3423}</Td>
+                    <Td>~ 2</Td>
                   </Tr>
                 </Tbody>
               </Table>
