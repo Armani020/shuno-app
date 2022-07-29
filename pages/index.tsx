@@ -64,7 +64,7 @@ const Home: NextPage = () => {
                   <Th rowSpan={2} width={"5%"}>
                     Общая <br /> нагрузка <br /> Вт
                   </Th>
-                  <Th width={"5%"} rowSpan={2} sx={consumptionTableStyle}>
+                  <Th width={"5%"} colSpan={3} sx={consumptionTableStyle}>
                     Плановое <br /> количество <br /> светильников
                   </Th>
                   <Th colSpan={3} textAlign="center">
@@ -73,6 +73,9 @@ const Home: NextPage = () => {
                   </Th>
                 </Tr>
                 <Tr>
+                  <Th>70w</Th>
+                  <Th>130w</Th>
+                  <Th>150w</Th>
                   <Th width={"5%"}>
                     Текущая <br /> нагрузка
                   </Th>
@@ -109,10 +112,12 @@ const TableBodyListItem = ({ shuno }: TableBodyListItemProps) => {
         <Td rowSpan={2}>{shuno.id?.toString().slice(0, 2)}</Td>
         <Td rowSpan={2}>{shuno.name}</Td>
         <Td rowSpan={2}>3434</Td>
-        <Td rowSpan={2}>
-          {shuno.lamps.w150 + shuno.lamps.w130 + shuno.lamps.w70}
+        <Td rowSpan={2}>{shuno.lamps.w70} шт</Td>
+        <Td rowSpan={2}>{shuno.lamps.w130} шт</Td>
+        <Td rowSpan={2}>{shuno.lamps.w150} шт</Td>
+        <Td colSpan={3}>
+          {lastRecord ? lastRecord.date.toString().slice(0, 10) : "Нет данных"}
         </Td>
-        <Td colSpan={3}>{lastRecord ? lastRecord.date.toString().slice(0, 10) : "Нет данных"}</Td>
       </Tr>
       <Tr key={shuno.name}>
         <Td>{lastRecord ? lastRecord.consumption : "Нет данных"}</Td>

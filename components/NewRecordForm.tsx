@@ -14,7 +14,6 @@ import {
   inputStyle,
 } from "@styles/NewRecordStyles";
 import { ChangeEvent, useState } from "react";
-import MyDatePicker from "./MyDatePicker";
 
 type NewRecordFormProps = {
   onAddRecord: (enteredRecordData: Consumption) => void;
@@ -22,12 +21,7 @@ type NewRecordFormProps = {
 };
 
 const NewRecordForm = (props: NewRecordFormProps) => {
-  const [date, setDate] = useState<Date | null>();
-  const [form, setForm] = useState({ consumption: "", shuno: "" });
-
-  const dateChange = (date: Date | null) => {
-    setDate(date);
-  };
+  const [form, setForm] = useState({ consumption: "", shuno: "", date: "" });
 
   const changeHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -36,7 +30,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
   };
 
   const submit = () => {
-    if (!date) {
+    if (!form.date || form.date === "") {
       console.log("date is empty!");
       return;
     }
@@ -54,7 +48,7 @@ const NewRecordForm = (props: NewRecordFormProps) => {
     });
 
     const recordData: Consumption = {
-      date: date,
+      date: new Date(form.date),
       consumption: Number(form.consumption),
       shuno_id: shunoIdByName!.id!,
     };
@@ -68,7 +62,15 @@ const NewRecordForm = (props: NewRecordFormProps) => {
       <FormControl isRequired sx={formControlStyle}>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="date">Дата</FormLabel>
-          <MyDatePicker dateChange={dateChange} />
+          <Input
+            placeholder="Select Date and Time"
+            size="md"
+            type="date"
+            id="date"
+            name="date"
+            value={form.date}
+            onChange={changeHandler}
+          />
         </Box>
         <Box sx={inputStyle}>
           <FormLabel htmlFor="consumption">Потребление</FormLabel>
