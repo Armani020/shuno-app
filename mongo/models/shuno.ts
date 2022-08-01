@@ -4,6 +4,7 @@ export interface Shuno {
   address: string;
   controller: string;
   lamps: ShunoLamp;
+  average_consumption: number;
 }
 
 export interface ShunoLamp {
@@ -25,6 +26,7 @@ export interface ShunoWithRecords {
   address: string;
   controller: string;
   lamps: ShunoLamp;
+  average_consumption: number;
   records: Consumption[];
 }
 

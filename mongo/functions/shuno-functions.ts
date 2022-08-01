@@ -71,6 +71,7 @@ export const getShunosWithConsumption = async (): Promise<BackendFunction> => {
       address: shuno.address,
       controller: shuno.controller,
       lamps: shuno.lamps,
+      average_consumption: shuno.average_consumption,
       records: shuno.records,
     }));
 

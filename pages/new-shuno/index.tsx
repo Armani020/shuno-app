@@ -2,7 +2,7 @@ import { Box, useToast } from "@chakra-ui/react";
 import NewShunoForm from "@components/NewShunoForm";
 import { useHttp } from "@hooks/useHttp";
 import { useUtils } from "@hooks/utils";
-import { ApiResponse, Data, Shuno } from "@mongo/models/shuno";
+import { Data, Shuno } from "@mongo/models/shuno";
 import { mainStyle } from "@styles/NewRecordStyles";
 import { NextPage } from "next";
 

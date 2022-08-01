@@ -14,14 +14,13 @@ import {
   formControlStyle,
   inputStyle,
 } from "@styles/NewRecordStyles";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 type NewShunoFormProps = {
   onAddShuno: (enteredRecordData: Shuno) => void;
 };
 
 const NewShunoForm = (props: NewShunoFormProps) => {
-  const [average, setAverage] = useState<number>(0);
   const [form, setForm] = useState({
     shuno: "",
     address: "",
@@ -29,20 +28,27 @@ const NewShunoForm = (props: NewShunoFormProps) => {
     w150: "",
     w130: "",
     w70: "",
-    average_consumption: "",
+    average: "",
   });
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value });
-    setAverage(calculateAverage());
   };
+
+  useEffect(() => {
+    setForm({ ...form, average: calculateAverage().toString() });
+  }, [form.w150, form.w130, form.w70]);
 
   const calculateAverage = () => {
     const average =
       Number(form.w70) * 70 + Number(form.w130) * 130 + Number(form.w150) * 150;
     const lampsNumber =
       Number(form.w70) + Number(form.w130) + Number(form.w150);
-    return average / lampsNumber;
+    const average_consumption = average / lampsNumber;
+    if (average_consumption) {
+      return average_consumption.toFixed(1);
+    }
+    return 0;
   };
 
   const submit = () => {
@@ -77,6 +83,7 @@ const NewShunoForm = (props: NewShunoFormProps) => {
         w130: Number(form.w130),
         w70: Number(form.w70),
       },
+      average_consumption: Number(form.average),
     };
 
     console.log(recordData);
@@ -155,14 +162,13 @@ const NewShunoForm = (props: NewShunoFormProps) => {
         </Center>
 
         <Box>
-          <FormLabel>Cреднее потребление на точку</FormLabel>
+          <FormLabel>Cреднее потребление на точку (Вт)</FormLabel>
           <Input
             type="number"
             id="average_consumption"
             name="average_consumption"
             readOnly={true}
-            value={average}
-            onChange={changeHandler}
+            value={form.average}
           />
         </Box>
 

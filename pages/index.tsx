@@ -1,7 +1,7 @@
 import { mainStyle } from "@styles/NewRecordStyles";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Consumption, Data, ShunoWithRecords } from "@mongo/models/shuno";
 import {
   consumptionTableStyle,
@@ -64,8 +64,11 @@ const Home: NextPage = () => {
                   <Th rowSpan={2} width={"5%"}>
                     Общая <br /> нагрузка <br /> Вт
                   </Th>
-                  <Th width={"5%"} colSpan={3} sx={consumptionTableStyle}>
+                  <Th colSpan={3} width={"5%"} sx={consumptionTableStyle}>
                     Плановое <br /> количество <br /> светильников
+                  </Th>
+                  <Th rowSpan={2} width={"2%"}>
+                    Среднее <br /> потребление <br /> на точку
                   </Th>
                   <Th colSpan={3} textAlign="center">
                     Дата
@@ -73,9 +76,9 @@ const Home: NextPage = () => {
                   </Th>
                 </Tr>
                 <Tr>
-                  <Th>70w</Th>
-                  <Th>130w</Th>
-                  <Th>150w</Th>
+                  <Th>70 w</Th>
+                  <Th>130 w</Th>
+                  <Th>150 w</Th>
                   <Th width={"5%"}>
                     Текущая <br /> нагрузка
                   </Th>
@@ -88,8 +91,21 @@ const Home: NextPage = () => {
                 </Tr>
               </Thead>
               <Tbody>
+                <Th>1</Th>
+                <Th>2</Th>
+                <Th>3</Th>
+                <Th colSpan={3}>4</Th>
+                <Th>5</Th>
+                <Th>6</Th>
+                <Th>7</Th>
+                <Th>8</Th>
                 {loadedShunosWithRecords.map((shuno) => (
-                  <TableBodyListItem key={shuno.id} shuno={shuno} />
+                  <TableBodyListItem
+                    key={shuno.id}
+                    shuno={shuno}
+                    index={loadedShunosWithRecords.indexOf(shuno)}
+                    onClickShuno={openDetailPage}
+                  />
                 ))}
               </Tbody>
             </Table>
@@ -101,29 +117,41 @@ const Home: NextPage = () => {
 };
 
 type TableBodyListItemProps = {
+  index: number;
   shuno: ShunoWithRecords;
+  onClickShuno: (shunoId: string) => void;
 };
 
-const TableBodyListItem = ({ shuno }: TableBodyListItemProps) => {
+const TableBodyListItem = ({
+  index,
+  shuno,
+  onClickShuno,
+}: TableBodyListItemProps) => {
   const lastRecord: Consumption = shuno.records[0];
+  const shunoConsumption =
+    shuno.lamps.w150 * 150 + shuno.lamps.w130 * 130 + shuno.lamps.w70 * 70;
+  const date = lastRecord?.date.toString().slice(0, 10);
+  const difference = shunoConsumption - lastRecord?.consumption;
+  const brokenLampsNumber = (difference / shuno.average_consumption).toFixed(2);
   return (
     <>
-      <Tr>
-        <Td rowSpan={2}>{shuno.id?.toString().slice(0, 2)}</Td>
-        <Td rowSpan={2}>{shuno.name}</Td>
-        <Td rowSpan={2}>3434</Td>
-        <Td rowSpan={2}>{shuno.lamps.w70} шт</Td>
-        <Td rowSpan={2}>{shuno.lamps.w130} шт</Td>
-        <Td rowSpan={2}>{shuno.lamps.w150} шт</Td>
-        <Td colSpan={3}>
-          {lastRecord ? lastRecord.date.toString().slice(0, 10) : "Нет данных"}
-        </Td>
-      </Tr>
-      <Tr key={shuno.name}>
-        <Td>{lastRecord ? lastRecord.consumption : "Нет данных"}</Td>
-        <Td>{3434 - 3423}</Td>
-        <Td>~ 2</Td>
-      </Tr>
+      <Fragment onClick={() => onClickShuno(shuno.id)}>
+        <Tr>
+          <Td rowSpan={2}>{index + 1}</Td>
+          <Td rowSpan={2}>{shuno.name}</Td>
+          <Td rowSpan={2}>{shunoConsumption} Вт</Td>
+          <Td rowSpan={2}>{shuno.lamps.w70} шт</Td>
+          <Td rowSpan={2}>{shuno.lamps.w130} шт</Td>
+          <Td rowSpan={2}>{shuno.lamps.w150} шт</Td>
+          <Td rowSpan={2}>{shuno.average_consumption} Вт</Td>
+          <Td colSpan={3}>{lastRecord ? date : "Нет данных"}</Td>
+        </Tr>
+        <Tr key={shuno.name}>
+          <Td>{lastRecord ? lastRecord.consumption + " Вт" : "Нет данных"}</Td>
+          <Td>{lastRecord ? difference + " Вт" : "Нет данных"}</Td>
+          <Td>{lastRecord ? "~ " + brokenLampsNumber : "Нет данных"}</Td>
+        </Tr>
+      </Fragment>
     </>
   );
 };
